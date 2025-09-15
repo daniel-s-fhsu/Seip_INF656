@@ -1,14 +1,19 @@
 {
-    "tasks": [
-        {
-            "title": "Homework",
-            "description": "Do homework",
-            "status": "Incomplete"
-        },
-        {
-            "title": "Feed dogs",
-            "description": "Provide food to all the dogs",
-            "status": "Complete"
-        }
-    ]
+  "tasks": [
+    {
+      "title": "Homework",
+      "description": "Do homework",
+      "status": "Incomplete"
+    },
+    {
+      "title": "Feed dogs",
+      "description": "Provide food to all the dogs",
+      "status": "Complete"
+    },
+    {
+      "title": "Work on work",
+      "description": "Get programming done",
+      "status": "Complete"
+    }
+  ]
 }
