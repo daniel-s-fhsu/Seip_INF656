@@ -28,28 +28,14 @@ app.get("/logsummary", (req, res) => {
 // every 2 minutes, process and write logs to log.txt
 setInterval(() => {
   if (logs.length > 0) {
-    const counts = {};
-    logs.forEach(log => {
-      counts[log.event] = (counts[log.event] || 0) + 1;
-    });
-    summary = {
-      total: logs.length,
-      details: counts,
-      batchTime: new Date().toISOString()
-    };
+    // format each log as a line with datetime and event
+    const logEntries = logs
+      .map(log => `[${log.timestamp}] ${log.event}`)
+      .join("\n") + "\n";
 
-    //format the batch
-    const logEntry =
-      `[${summary.batchTime}] Total: ${summary.total}\n` +
-      Object.entries(summary.details)
-        .map(([event, count]) => `  ${event}: ${count}`)
-        .join("\n") +
-      "\n\n";
-
-    // append to file
-    fs.appendFile("log.txt", logEntry, err => {
+    fs.appendFile("log.txt", logEntries, err => {
       if (err) console.error("Error writing to log file:", err);
-      else console.log("Batch written to log.txt");
+      else console.log("Logs written to log.txt");
     });
 
     // clear logs for next batch
